@@ -21,24 +21,24 @@ And by failing if the `url` requested is already busy, these methods force their
 
 Synopsis
 ---
-If the URL requested is not busy for `myapp`, send a GET request for a JSON resource:
+If the URL requested is not busy for `myapp`, send a GET request for a JSON resource.
 ```javascript
 myapp.xhrGetJson('hello.php');
 ```
 
-Or send a query along, as a map of arguments:
+Or send a query along, as a map of arguments.
 ```javascript
 myapp.xhrGetJson('hello.php', {'n': 'World'});
 ```
 
 Since `callback(status, message)` was left undefined an application event will be emitted on response.
 
-For instance, on success :
+For instance, on success.
 ```
 200 GET hello.php {"who": "World"}
 ```
 
-To POST a JSON body instead, do :
+To POST a JSON body instead, do.
 ```javascript
 myapp.xhrPostJson('greetings.php', {'who': 'World'});
 ```
