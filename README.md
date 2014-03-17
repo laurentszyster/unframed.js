@@ -1,4 +1,4 @@
-unframed.js / README.md
+unframed.js
 ===
 A javascript application prototype.
 
@@ -8,7 +8,7 @@ All those conveniences eventually emit events that your application can handle. 
 
 Synopsis
 ---
-Link or include `[unframed.js]` or a minified equivalent in an HTML document (see `[./index.html]`).
+Link or include [`unframed.js`](https://github.com/laurentszyster/unframed.js/unframed.js) or a minified equivalent in an HTML document.
 
 Call the `window.unframed` factory function to get a named instance of proptotype `Unframed`.
 ```javascript
