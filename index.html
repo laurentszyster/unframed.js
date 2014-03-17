@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>unframed.js/index.html</title>
+<!--[if lt IE 9]>
+	<script type="text/javascript" src="deps/es5shim/es5-shim.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<header>
+	<span>Menu</span> &amp; <span>Notifications</span>
+</header>
+<section id="hero" class="Hero">
+	<h1>Hero</h1>
+	<p>The hero section, where users register their installation.</p>
+	<form>
+		<input id="heroNameInput" type="text" placeholder="Name" />
+		<button>Start</button>
+	</form>
+</section>
+<footer>
+	Copyrights, commercials, links and stuff.
+</footer>
+<script type="text/javascript" src="unframed-min.js"></script>
+<script>
+
+var myapp = window.unframed('myapp');
+myapp.link('DOM Ready', function myAppStart () {
+	console.log('DOM Ready');
+});
+myapp.link('DOM Unload', function myAppStop () {
+	alert('DOM Unload'); // should be blocked by browsers ,-)
+});
+
+</script>
+</body>
+</html>
