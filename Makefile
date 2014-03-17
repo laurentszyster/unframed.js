@@ -1,7 +1,7 @@
-# just make it ugly.
-ugly: unframed-min.js 
+# just make it ugly ,-)
+ugly: unframed-min.js unframed.js
 
-# the minified sources without IE8 shims
+# the minified sources
 unframed-min.js: 
 	uglifyjs \
 		./src/unframed_application.js \
@@ -10,20 +10,9 @@ unframed-min.js:
 		-o unframed-min.js \
 		-c -m -e
 
-# the minified sources with IE8 shims
-unframed-ie-min.js: 
-	uglifyjs \
-		./src/unframed_ie8.js \
-		./src/unframed_application.js \
-		./src/unframed_localStorage.js \
-		./src/unframed_xhr.js \
-		-o unframed-ie-min.js \
-		-c -m -e
-
 # all the beautified sources
 unframed.js: 
 	uglifyjs \
-		./src/unframed_ie8.js \
 		./src/unframed_application.js \
 		./src/unframed_localStorage.js \
 		./src/unframed_xhr.js \
@@ -42,6 +31,5 @@ clean:
 	rm deps/es5-shim -rf
 	rm unframed.js
 	rm unframed-min.js
-	rm unframed-ie-min.js
 
-all: deps unframed-min.js unframed-ie-min.js unframed.js
+all: deps ugly
