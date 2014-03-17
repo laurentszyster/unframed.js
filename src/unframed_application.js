@@ -14,6 +14,10 @@ function unframed_link (name, listener) {
 	}
 }
 
+function unframed_trace (name, message) {
+	console.log(name + ' ' + JSON.stringify(message));
+}
+
 /**
  * Emit a named event with a message, apply all the listeners or log
  * an error on the console.
@@ -23,6 +27,7 @@ function unframed_emit (name, message) {
 	if (links === undefined) {
 		throw (name + ' ' + JSON.stringify(message));
 	} else {
+		this.trace(name, message);
 		links.forEach(function (listener) {
 			listener.apply(this, [message]);
 		});
@@ -42,7 +47,8 @@ function Unframed (name) {
  */
 Unframed.prototype = {
 	link: unframed_link,
-	emit: unframed_emit
+	emit: unframed_emit,
+	trace: unframed_trace
 }
 
 /**
@@ -86,5 +92,12 @@ function unframed_extend(methods) {
 }
 
 unframed.extend = unframed_extend;
+unframed.trace = function (traceOn) {
+    if (traceOn) {
+        Unframed.prototype.trace = unframed_trace;
+    } else {
+        Unframed.prototype.trace = function pass () {};
+    }
+}
 window.unframed = unframed;
 // attach to window, still the one true HTML5 application's frame.

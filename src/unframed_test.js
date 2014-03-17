@@ -1,0 +1,1 @@
+test("window.unframed", function(){});
