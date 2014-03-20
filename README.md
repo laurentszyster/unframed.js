@@ -2,13 +2,17 @@ unframed.js
 ===
 A javascript application prototype.
 
-The `Unframed` prototype is designed to program a web application as a flat list of named events listeners handling messages. It includes conveniences for the basic functions of many HTML5 application: DOM ready and unload event, local storage of JSON objects; GET from and POST common MIME type to URLs.
+Modern web applications have a wealth of API to apply covering a wide range of subsystems, from sending XHR requests to network services to getting user medias or playing music. How to not get entangled in some callback hell or an event race ?
 
-All those conveniences eventually emit events that your application can handle. Add application's events, handlers and emitter at *your* convenience, decoupling *your* application's components along the way as *you* program it.
+Starting an application from an `Unframed` prototype forces upfront to think the application in terms of named events and state transitions. In return this allows to build an application from linked components exchanging messages at one convenient traceable state, the application's state.
+
+The `Unframed` also includes conveniences for the basic functions of many HTML5 application: DOM ready and unload event, local storage of JSON objects; GET from and POST common MIME type to URLs. Those common conveniences eventually emit events that your application can handle.
+
+Add application's events, handlers and emitter at your convenience while decoupling your application's components along the way.
 
 Synopsis
 ---
-Link or include [`unframed.js`](https://github.com/laurentszyster/unframed.js/unframed.js) or a minified equivalent in an HTML document.
+Link or include the [unframed.js](https://github.com/laurentszyster/unframed.js/unframed.js) sources or a minified equivalent in an HTML document.
 
 Call the `window.unframed` factory function to get a named instance of proptotype `Unframed`.
 ```javascript
@@ -48,10 +52,15 @@ myapp.link('hello', function (message) {
 });
 ```
 
+You can mute the application events trace, in production.
+```javascript
+myapp.trace(false);
+```
+
 Use Cases
 ---
-A web socket connection may disconnect on user request, on network failure, on timeout, etc.
+A web socket connection may disconnect on user request, on network failure, on timeout, etc. Yet, disconnection of this socket should be reflected by the application's user interface components in the same way whatever the cause and regardless of how the application's storage components will react to disconnection.
 
-Yet, disconnection of this socket should be reflected by the application's user interface components in the same way whatever the cause and regardless of how the application's storage components will react to disconnection.
+A public and private version of an otherwise identical application, one with a weak RSA authorization scheme, another with a strong ECDH key exchange. Otherwise identical applications with different versions of the same component depending on their media device capabilities.
 
-What matter is the `WS Disconnect` event upon which some DOM elements get disabled while some network components change some state from 'on' to 'off'.
+Practically, any HTML5 application should be broken down into events first. Components will emerge as distinct sets of application events sent and received.
