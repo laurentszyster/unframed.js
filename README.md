@@ -15,24 +15,27 @@ Synopsis
 Link or include the [unframed.js](https://github.com/laurentszyster/unframed.js/unframed.js) sources or a minified equivalent in an HTML document.
 
 Call the `window.unframed` factory function to get a named instance of proptotype `Unframed`.
-```javascript
+
+~~~javascript
 var myapp = window.unframed('myapp');
-```
+~~~
 
 The variable `myapp` is supposed to hold the state of your application. It will receive at least two events: `DOM Ready` and `DOM Unload`. 
 
 Handle them at minima first.
-```javascript
+
+~~~javascript
 myapp.link('DOM Ready', function () {
     console.log('ready');
 });
 myapp.link('DOM Unload', function () {
     alert('unload'); // should be blocked
 });
-```
+~~~
 
 To send an 'hello' event message to `myapp` when the value of the `hello` element changes, do:
-```javascript
+
+~~~javascript
 document.getElementById('hello').addEventListener(
     'change', function (evt) {
         myapp.emit('hello', {
@@ -40,22 +43,24 @@ document.getElementById('hello').addEventListener(
         });
     }
 );
-```
+~~~
 
 Now the application's handling of the "hello" event is decoupled from its emitter. This application event can be received by more than one component, it may also be emitted by another component.
-```javascript
+
+~~~javascript
 myapp.link('hello', function (message) {
     document.getElementById('message').textContent = message['who'];
 });
 myapp.link('hello', function (message) {
     console.log(message['who']);
 });
-```
+~~~
 
 You can mute the application events trace, in production.
-```javascript
+
+~~~javascript
 myapp.trace(false);
-```
+~~~
 
 Use Cases
 ---
